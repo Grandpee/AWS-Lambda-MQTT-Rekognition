@@ -32,8 +32,8 @@ def lambda_handler(event, context):
     copy_image_to_s3(s3, s3_final_bucket, s3_record_bucket, imageName)
 
     response = dynamoDB.describe_table(TableName='memberSheet')
-    #memberCount = int(response['Table']['ItemCount'])
-    memberCount = 1
+    memberCount = int(response['Table']['ItemCount'])
+    #memberCount = 1
 
     memberID, similarity = compare_face(s3_member_bucket, s3_final_bucket, memberCount, rekognition)
     
